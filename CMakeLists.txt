@@ -36,3 +36,20 @@ add_executable(
         Menu/GrafManager.cpp
         Menu/GrafManager.h
 )
+
+# Pomiar czasu wszystkich algorytmow dla obu reprezentacji (wynik CSV). Zawsze z optymalizacja.
+add_executable(benchmark
+        tools/benchmark.cpp
+        Tablica/MacierzIncydencji.cpp
+        Tablica/ListaSasiedztwa.cpp
+        Algorytmy/MST/Kruskal.cpp
+        Algorytmy/MST/Prim.cpp
+        Algorytmy/NajkrotszaSciezka/Dijkstra.cpp
+        Algorytmy/NajkrotszaSciezka/BellmanFord.cpp
+        Algorytmy/MaksymalnyPrzeplyw/FordFulkerson.cpp
+)
+if (MSVC)
+    target_compile_options(benchmark PRIVATE /O2)
+else ()
+    target_compile_options(benchmark PRIVATE -O2)
+endif ()
